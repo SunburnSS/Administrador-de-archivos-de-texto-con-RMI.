@@ -1,6 +1,32 @@
 # Administrador-de-archivos-de-texto-con-RMI.
 Aplicación distribuida con funcionalidades en archivos de texto utilizando RMI.
 
-Ejecucion del server: java HelloServer
+Compilar:
 
-Ejecucion del cliente: java HelloClient "método a realizar"
+  ```bash
+  javac *.java
+  ```
+  
+ Iniciar rmiregistry para Windows:
+ 
+   ```bash
+start rmiregistry
+  ```
+  
+ Iniciar rmiregistry para linux:
+ 
+   ```bash
+rmiregistry &
+  ```
+
+Ejecucion del server: 
+
+  ```bash
+ java HelloServer
+  ```
+
+Ejecucion del cliente: 
+
+  ```bash
+ java HelloClient "método a realizar"
+  ```

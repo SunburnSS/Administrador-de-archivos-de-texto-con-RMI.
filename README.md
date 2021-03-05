@@ -4,29 +4,29 @@ Aplicación distribuida con funcionalidades en archivos de texto utilizando RMI.
 Compilar:
 
   ```bash
-  javac *.java
+  $ javac *.java
   ```
   
  Iniciar rmiregistry para Windows:
  
    ```bash
-start rmiregistry
+   $ start rmiregistry
   ```
   
  Iniciar rmiregistry para linux:
  
    ```bash
-rmiregistry &
+$ rmiregistry &
   ```
 
 Ejecucion del server: 
 
   ```bash
- java HelloServer
+ $ java HelloServer
   ```
 
 Ejecucion del cliente: 
 
   ```bash
- java HelloClient "método a realizar"
+ $ java HelloClient "método a realizar"
   ```

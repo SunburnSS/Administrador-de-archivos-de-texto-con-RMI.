@@ -7,53 +7,40 @@ public class HelloClient{
     try {
       HelloInterface hello = (HelloInterface) Naming.lookup ("//localhost/Hello");
       switch(argv[0]){
-        case "suma":
-          System.out.println(hello.suma());
-          break;
-
-        case "say":
-          System.out.println(hello.say());
-          break;
-
         case "ContarLineas":
-          System.out.println(hello.ContarLineas());
+          System.out.println(hello.ContarLineas(argv[1]));
           break;
 
         case "ContarVocales":
-          System.out.println(hello.ContarVocales());
+          System.out.println(hello.ContarVocales(argv[1]));
           break;
 
         case "Escribe":
-          hello.Escribe();
+          hello.Escribe(argv[1]);
           System.out.println("Escritura exitosa.");
           break;
 
         case "Imprimir":
-          System.out.println(hello.Imprimir());
+          System.out.println(hello.Imprimir(argv[1]));
           break;
 
         case "Respaldar":
-          hello.Respaldar();
+          hello.Respaldar(argv[1], argv[2]);
           System.out.println("Respaldo exitoso.");
           break;
 
         case "Copiar":
-          hello.Copiar();
+          hello.Copiar(argv[1], argv[2]);
           System.out.println("El archivo fue copiado exitosamente.");
           break;
 
         case "Renombrar":
-          boolean correcto;
-          correcto = hello.Renombrar();
-          if(correcto){
-            System.out.println("El archivo fue renombrado correctamente.");
-          }else{
-            System.out.println("Hubo un problema con el renombrado.");
-          }
+          hello.Renombrar(argv[1], argv[2]); 
+          System.out.println("El archivo fue renombrado correctamente.");
           break;
         
         case "Borrar":
-          if(hello.Borrar()){
+          if(hello.Borrar(argv[1])){
             System.out.println("El archivo fue eliminado correctamente.");
           }else{
             System.out.println("Hubo un error al eliminar el archivo.");

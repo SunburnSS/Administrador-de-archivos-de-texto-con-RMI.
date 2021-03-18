@@ -6,22 +6,12 @@ import java.io.*;
  * Aqui van todas las clases a usar
  */
 public class Hello extends UnicastRemoteObject implements HelloInterface {
-  private String archivo;
 
-  public Hello(String archivin) throws RemoteException {
-    archivo = archivin;
+  public Hello() throws RemoteException {
+    
   }
 
-  public String say() throws RemoteException {
-
-    return archivo;
-  }
-
-  public int suma() throws RemoteException {
-    return 5;
-  }
-
-  public int ContarLineas() throws RemoteException {
+  public int ContarLineas(String archivo) throws RemoteException {
     int NumLineas = 0;
     String lineas = "";
     File file = new File(archivo);
@@ -51,7 +41,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     return NumLineas;
   }
 
-  public int ContarVocales() throws RemoteException{
+  public int ContarVocales(String archivo) throws RemoteException{
     String lineas = "";
     int Vocales = 0;
     File file = new File(archivo);
@@ -100,7 +90,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     return Vocales;
   }
 
-  public void Escribe() throws RemoteException{
+  public void Escribe(String archivo) throws RemoteException{
     File origen = new File(archivo);
     File destino = new File("escribe.txt");
 
@@ -122,7 +112,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     }
   }
 
-  public String Imprimir() throws RemoteException{
+  public String Imprimir(String archivo) throws RemoteException{
     String lineas = "";
     String texto = "";
     File file = new File(archivo);
@@ -152,7 +142,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     return texto;
   }
 
-  public void Respaldar() throws RemoteException{
+  public void Respaldar(String archivo, String respaldo) throws RemoteException{
     String lineas = "";
     File file = new File(archivo);
     FileReader fr = null;
@@ -165,7 +155,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
       fr = new FileReader(file);
       br = new BufferedReader(fr);
 
-      fichero = new FileWriter("respaldo.txt");
+      fichero = new FileWriter(respaldo);
       pw = new PrintWriter(fichero);
 
       while ((lineas = br.readLine()) != null) {
@@ -177,13 +167,14 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
       try {
         if (null != fichero)
           fichero.close();
+          fr.close();
       } catch (Exception e2) {
         System.out.println("Error al cerrar el archivo.");
       }
     }
   }
 
-  public void Copiar() throws RemoteException{
+  public void Copiar(String archivo, String archivin) throws RemoteException{
     
     String lineas = "";
     File file = new File(archivo);
@@ -196,8 +187,7 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     try {
       fr = new FileReader(file);
       br = new BufferedReader(fr);
-
-      fichero = new FileWriter("copia.txt");
+      fichero = new FileWriter(archivin, true);
       pw = new PrintWriter(fichero);
 
       while ((lineas = br.readLine()) != null) {
@@ -209,22 +199,47 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
       try {
         if (null != fichero)
           fichero.close();
+          fr.close();
       } catch (Exception e2) {
         System.out.println("Error al cerrar el archivo.");
       }
     }
   }
 
-  public boolean Renombrar() throws RemoteException{
-    File f1 = new File(archivo);
-    File f2 = new File("renombrado.txt");
+  public void Renombrar(String archivo, String renombrado) throws RemoteException{
+    String lineas = "";
+    File file = new File(archivo);
+    FileReader fr = null;
+    BufferedReader br = null;
 
-    boolean correcto = f1.renameTo(f2);
+    FileWriter fichero = null;
+    PrintWriter pw = null;
 
-    return correcto;
+    try {
+      fr = new FileReader(file);
+      br = new BufferedReader(fr);
+      
+      fichero = new FileWriter(renombrado);
+      pw = new PrintWriter(fichero);
+
+      while ((lineas = br.readLine()) != null) {
+        pw.println(lineas);
+      }
+    } catch (Exception e) {
+      System.out.println("Error al abrir el archivo.");
+    } finally {
+      try {
+        if (null != fichero)
+          fichero.close();
+          fr.close();
+          file.delete();
+      } catch (Exception e2) {
+        System.out.println("Error al cerrar el archivo.");
+      }
+    }
   }
 
-  public boolean Borrar() throws RemoteException{
+  public boolean Borrar(String archivo) throws RemoteException{
     File f = new File(archivo);
     return f.delete();
   }

@@ -6,25 +6,21 @@ import java.rmi.*;
 
 public interface HelloInterface extends Remote {
 
-  public String say() throws RemoteException;
+  public int ContarLineas(String archivo) throws RemoteException;
 
-  public int suma() throws RemoteException;
+  public int ContarVocales(String archivo) throws RemoteException;
 
-  public int ContarLineas() throws RemoteException;
+  public void Escribe(String archivo) throws RemoteException;
 
-  public int ContarVocales() throws RemoteException;
+  public String Imprimir(String archivo) throws RemoteException;
 
-  public void Escribe() throws RemoteException;
+  public void Respaldar(String archivo, String respaldo) throws RemoteException;
 
-  public String Imprimir() throws RemoteException;
+  public void Copiar(String archivo, String archivin) throws RemoteException;
 
-  public void Respaldar() throws RemoteException;
+  public void Renombrar(String archivo, String renombrado) throws RemoteException;
 
-  public void Copiar() throws RemoteException;
-
-  public boolean Renombrar() throws RemoteException;
-
-  public boolean Borrar() throws RemoteException;
+  public boolean Borrar(String archivo) throws RemoteException;
 
 
 }

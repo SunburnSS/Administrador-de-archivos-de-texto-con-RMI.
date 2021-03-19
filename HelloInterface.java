@@ -10,7 +10,7 @@ public interface HelloInterface extends Remote {
 
   public int ContarVocales(String archivo) throws RemoteException;
 
-  public void Escribe(String archivo) throws RemoteException;
+  public void Escribe(String archivo, String contenido) throws RemoteException;
 
   public String Imprimir(String archivo) throws RemoteException;
 

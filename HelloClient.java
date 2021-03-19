@@ -16,7 +16,7 @@ public class HelloClient{
           break;
 
         case "Escribe":
-          hello.Escribe(argv[1]);
+          hello.Escribe(argv[1], argv[2]);
           System.out.println("Escritura exitosa.");
           break;
 

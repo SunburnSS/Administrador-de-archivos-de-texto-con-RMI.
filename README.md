@@ -22,7 +22,7 @@ $ rmiregistry &
 Ejecucion del server: 
 
   ```bash
- $ java HelloServer
+ $ java -Djava.security.policy=policy.txt HelloServer
   ```
 
 Ejecucion del cliente: 

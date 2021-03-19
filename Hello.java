@@ -90,25 +90,22 @@ public class Hello extends UnicastRemoteObject implements HelloInterface {
     return Vocales;
   }
 
-  public void Escribe(String archivo) throws RemoteException{
-    File origen = new File(archivo);
-    File destino = new File("escribe.txt");
-
+  public void Escribe(String archivo, String contenido) throws RemoteException{
     try {
-      InputStream in = new FileInputStream(origen);
-      OutputStream out = new FileOutputStream(destino);
+      OutputStream out = new FileOutputStream(archivo);
 
-      byte[] buf = new byte[1024];
-      int len;
+      // Converts the string into bytes
+      byte[] dataBytes = contenido.getBytes();
 
-      while ((len = in.read(buf)) > 0) {
-        out.write(buf, 0, len);
-      }
+      // Writes data to the output stream
+      out.write(dataBytes);
 
-      in.close();
+      // Closes the output stream
       out.close();
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
+    }
+
+    catch (Exception e) {
+        e.getStackTrace();
     }
   }
 
